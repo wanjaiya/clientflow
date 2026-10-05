@@ -1,10 +1,5 @@
 import Link from "next/link";
-
-const projectNames = [
-    "Website redesign",
-    "Brand identity",
-    "Mobile app landing page",
-];
+import { projects } from "@/lib/projects/data";
 
 export default function ProjectsPage() {
     return (
@@ -25,12 +20,14 @@ export default function ProjectsPage() {
             </p>
 
             <div className="mt-8 space-y-3">
-                {projectNames.map((name) => (
+                {projects.map((project) => (
                     <div
-                        key={name}
+                        key={project.name}
                         className="rounded-xl border border-slate-200 bg-white p-5"
                     >
-                        <h2 className="font-semibold text-slate-800">{name}</h2>
+                        <h2 className="font-semibold text-slate-800">
+                            {project.name}
+                        </h2>
                     </div>
                 ))}
             </div>

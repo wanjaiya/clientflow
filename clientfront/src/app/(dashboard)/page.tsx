@@ -1,52 +1,5 @@
-import Link from "next/link";
-import Sidebar from "@/components/navigation/sidebar";
-
-type ProjectStatus = "In progress" | "In review" | "Completed";
-
-type Project = {
-    id: number;
-    name: string;
-    client: string;
-    status: ProjectStatus;
-    dueDate: string;
-};
-
-const projects: Project[] = [
-    {
-        id: 1,
-        name: "Website redesign",
-        client: "Acme Studio",
-        status: "In progress",
-        dueDate: "Oct 08, 2026",
-    },
-    {
-        id: 2,
-        name: "Brand identity",
-        client: "Northstar Co.",
-        status: "In review",
-        dueDate: "Oct 12, 2026",
-    },
-    {
-        id: 3,
-        name: "Mobile app landing page",
-        client: "Bright Labs",
-        status: "Completed",
-        dueDate: "Sep 25, 2026",
-    },
-    {
-        id: 4,
-        name: "Client flow Updates",
-        client: "Self",
-        status: "In progress",
-        dueDate: "Oct 30 2026",
-    },
-];
-
-const statusStyles: Record<ProjectStatus, string> = {
-    "In progress": "bg-blue-50 text-blue-700",
-    "In review": "bg-amber-50 text-amber-700",
-    Completed: "bg-green-50 text-green-700",
-};
+import { projects } from "@/lib/projects/data";
+import ProjectStatusBadge from "@/components/projects/project-status-badge";
 
 function SummaryCard({
     title,
@@ -148,11 +101,9 @@ export default function Home() {
                                     </td>
 
                                     <td className="px-6 py-5">
-                                        <span
-                                            className={`rounded-full px-3 py-1 text-xs font-medium ${statusStyles[project.status]}`}
-                                        >
-                                            {project.status}
-                                        </span>
+                                        <ProjectStatusBadge
+                                            status={project.status}
+                                        />
                                     </td>
 
                                     <td className="px-6 py-5 text-slate-600">
